@@ -3,7 +3,7 @@
 ******** Setup step start ********
 
 - `composer install`
-- update database credential into .env file
+- create new .env file from .env.example and update database credential
 - `php artisan key:generate`
 - `php artisan migrate`
 - `npm install`

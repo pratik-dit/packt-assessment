@@ -16,15 +16,25 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav me-auto">
-            <li class="nav-item">
+            <li v-if="authenticated" class="nav-item">
               <router-link :to="{name:'dashboard'}" class="nav-link"
                 >Home <span class="sr-only">(current)</span></router-link
+              >
+            </li>
+            <li v-if="!authenticated" class="nav-item">
+              <router-link :to="{name:'home'}" class="nav-link"
+                >Home <span class="sr-only">(current)</span></router-link
+              >
+            </li>
+            <li v-if="!authenticated" class="nav-item">
+              <router-link :to="{name:'book-store'}" class="nav-link"
+                >Books <span class="sr-only">(current)</span></router-link
               >
             </li>
           </ul>
           <div class="d-flex">
             <ul class="navbar-nav">
-              <li class="nav-item dropdown">
+              <li v-if="authenticated" class="nav-item dropdown">
                 <a
                   class="nav-link dropdown-toggle"
                   href="#"
@@ -48,6 +58,11 @@
                   >
                 </div>
               </li>
+              <li v-if="!authenticated" class="nav-item">
+                <router-link :to="{name:'login'}" class="nav-link"
+                  >Login <span class="sr-only">(current)</span></router-link
+                >
+              </li>
             </ul>
           </div>
         </div>
@@ -65,7 +80,8 @@ export default {
     name:"default-layout",
     data(){
         return {
-            user:this.$store.state.auth.user
+            user:this.$store.state.auth.user,
+            authenticated:this.$store.state.auth.authenticated
         }
     },
     methods:{

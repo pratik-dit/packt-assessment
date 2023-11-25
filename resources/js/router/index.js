@@ -2,14 +2,18 @@ import { createWebHistory, createRouter } from 'vue-router'
 import store from '@/store'
 
 /* Login/Register Component */
-const Login = () => import('@/components/Login.vue')
-const Register = () => import('@/components/Register.vue')
+const Login = () => import('@/components/auth/Login.vue')
+const Register = () => import('@/components/auth/Register.vue')
 
 /* Layouts */
 const DahboardLayout = () => import('@/components/layouts/Default.vue')
 
 /* Authenticated Component */
-const Dashboard = () => import('@/components/Dashboard.vue')
+const Dashboard = () => import('@/components/admin/Dashboard.vue')
+
+/* Guest Component */
+const Home = () => import('@/components/customer/Home.vue')
+const BookStore = () => import('@/components/customer/BookStore.vue')
 
 const routes = [
     {
@@ -31,7 +35,7 @@ const routes = [
         }
     },
     {
-        path: "/",
+        path: "/dashboard",
         component: DahboardLayout,
         meta: {
             middleware: "auth"
@@ -39,14 +43,39 @@ const routes = [
         children: [
             {
                 name: "dashboard",
-                path: '/',
+                path: '/dashboard',
                 component: Dashboard,
                 meta: {
                     title: `Dashboard`
                 }
             }
         ]
-    }
+    },
+    {
+      path: "/",
+      component: DahboardLayout,
+      meta: {
+          middleware: "guest"
+      },
+      children: [
+          {
+              name: "home",
+              path: '/',
+              component: Home,
+              meta: {
+                  title: `Home`
+              }
+          },
+          {
+            name: "book-store",
+            path: '/book-store',
+            component: BookStore,
+            meta: {
+                title: `Book Store`
+            }
+          }
+      ]
+    },
 ]
 
 const router = createRouter({
