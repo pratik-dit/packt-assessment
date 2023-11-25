@@ -1,13 +1,18 @@
 # Packt Assessment
 
-******** Setup step start ********
+******** Setup step ********
 
 - `composer install`
 - create new .env file from .env.example and update database credential
 - `php artisan key:generate`
 - `php artisan migrate`
+- `php artisan db:seed`
 - `npm install`
 - `npm run dev`
 - `php artisan serve`
 
-******** Setup step end ********
+******** Admin Login Credentials ********
+
+# Email: admin@gmail.com
+# Password: 123123123
+
