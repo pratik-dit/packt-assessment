@@ -28,4 +28,13 @@ class BookController extends Controller
           'status' => 200,
         ]);
     }
+
+    public function getBooks()
+    {
+      $books = Book::orderBy('created_by', 'desc')->orderBy('id','desc')->paginate(10);
+      $response = [
+          'data' => $books
+      ];
+      return response()->json($response);
+    }
 }

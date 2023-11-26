@@ -18,7 +18,7 @@
                 </div>
                 <div class="card-body d-grid gap-3">
                   <div class="text-section">
-                    <span class="card-text fs-4">Click below button to sync books data from faker api.</span>
+                    <span class="card-text fs-4">Click below button to sync books data from faker api. It will not affect record created by admin.</span>
                   </div>
                   <div class="cta-section">
                     <button class="btn btn-dark fs-4" @click="sync_books">Sync Now</button>

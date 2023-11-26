@@ -31,6 +31,11 @@
                 >Books <span class="sr-only">(current)</span></router-link
               >
             </li>
+            <li v-if="authenticated" class="nav-item">
+              <router-link :to="{name:'books'}" class="nav-link"
+                >Books <span class="sr-only">(current)</span></router-link
+              >
+            </li>
           </ul>
           <div class="d-flex">
             <ul class="navbar-nav">

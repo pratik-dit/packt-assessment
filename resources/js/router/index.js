@@ -10,6 +10,7 @@ const DahboardLayout = () => import('@/components/layouts/Default.vue')
 
 /* Authenticated Component */
 const Dashboard = () => import('@/components/admin/Dashboard.vue')
+const Book = () => import('@/components/admin/Book/List.vue')
 
 /* Guest Component */
 const Home = () => import('@/components/customer/Home.vue')
@@ -48,7 +49,15 @@ const routes = [
                 meta: {
                     title: `Dashboard`
                 }
-            }
+            },
+            {
+              name: "books",
+              path: '/book',
+              component: Book,
+              meta: {
+                  title: `Books`
+              }
+          }
         ]
     },
     {
