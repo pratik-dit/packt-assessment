@@ -31,3 +31,5 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
       Route::delete('/{id}', 'App\Http\Controllers\BookController@destroy');
   });
 });
+
+Route::get('/book-list', 'App\Http\Controllers\Customer\BookController@getBooks');
