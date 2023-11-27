@@ -11,6 +11,8 @@ const DahboardLayout = () => import('@/components/layouts/Default.vue')
 /* Authenticated Component */
 const Dashboard = () => import('@/components/admin/Dashboard.vue')
 const Book = () => import('@/components/admin/Book/List.vue')
+const BookEdit = () => import('@/components/admin/Book/Edit.vue')
+const BookAdd = () => import('@/components/admin/Book/Add.vue')
 
 /* Guest Component */
 const Home = () => import('@/components/customer/Home.vue')
@@ -57,7 +59,23 @@ const routes = [
               meta: {
                   title: `Books`
               }
-          }
+            },
+            {
+              name: "bookAdd",
+              path: '/book/add',
+              component: BookAdd,
+              meta: {
+                  title: `Books`
+              }
+            },
+            {
+              name: "bookEdit",
+              path: '/book/:id/edit',
+              component: BookEdit,
+              meta: {
+                  title: `Books`
+              }
+            }
         ]
     },
     {

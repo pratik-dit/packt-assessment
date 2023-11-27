@@ -25,5 +25,9 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
   Route::group(['prefix' => 'books'], function () {
       Route::get('/sync', 'App\Http\Controllers\BookController@syncFakerBooksData');
       Route::get('/list', 'App\Http\Controllers\BookController@getBooks');
+      Route::get('/{id}', 'App\Http\Controllers\BookController@show');
+      Route::post('/', 'App\Http\Controllers\BookController@store');
+      Route::post('/{id}', 'App\Http\Controllers\BookController@update');
+      Route::delete('/{id}', 'App\Http\Controllers\BookController@destroy');
   });
 });

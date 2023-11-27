@@ -12,7 +12,7 @@
               synced from faker api</span
             >
             <div class="cta-section">
-              <button class="btn btn-dark fs-4">Add</button>
+              <router-link :to='{name:"bookAdd"}' class="btn fs-4 btn-success">Add</router-link>
             </div>
             <div class="table-responsive">
               <table class="table table-bordered table-striped">
@@ -60,7 +60,13 @@
                     <td>{{ book.published }}</td>
                     <td>{{ book.publisher }}</td>
                     <!-- <td>{{book.description.substring(0,30)+".."}}</td> -->
-                    <td></td>
+                    <td v-if="book.created_by">
+                      <router-link :to='{name:"bookEdit",params:{id:book.id}}' class="btn btn-success">Edit</router-link>
+                      <button type="button" class="btn btn-danger" @click="deleteBook(book.id)">Delete</button>
+                    </td>
+                    <td v-else>
+                      No Action Allowed
+                    </td>
                   </tr>
                 </tbody>
                 <tbody v-else>
@@ -130,9 +136,21 @@ export default {
     },
     getResults(page){
       if (!page) {
-                page = 1;
-            }
+        page = 1;
+      }
       this.getBooks(page)
+    },
+    async deleteBook(bookId) {
+      if(confirm("Are you sure to delete this book?")){
+        this.processing = true
+        await axios.delete('/api/books/'+bookId).then(({data})=>{
+            this.getBooks(1)
+        }).catch(({response})=>{
+
+        }).finally(()=>{
+            this.processing = false
+        })
+      }
     }
   }
 }
