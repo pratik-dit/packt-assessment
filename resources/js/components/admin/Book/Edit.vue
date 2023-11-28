@@ -121,7 +121,6 @@ export default {
     }
   },
   mounted(){
-    console.log(this.$route.params.id)
     this.showBook()
   },
   methods: {
@@ -130,7 +129,6 @@ export default {
       await axios.get('/api/books/'+this.$route.params.id).then(({data})=>{
         if(data.status == 200){
           this.book = data.data
-          console.log("this.book = ", this.book)
         }else{
           this.$router.push({name:"books"})
         }

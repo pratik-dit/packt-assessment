@@ -7,6 +7,14 @@
             <h2>Books</h2>
           </div>
           <div class="card-body d-grid gap-3">
+            <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
+                <div class="input-group">
+                  <input v-model="term" type="search" placeholder="What're you searching for?" aria-describedby="button-addon1" class="form-control border-0 bg-light">
+                  <div class="input-group-append">
+                    <button id="button-addon1" type="btn" class="btn btn-link text-primary" @click="search"><i class="fa fa-search"></i></button>
+                  </div>
+                </div>
+            </div>
             <div class="table-responsive">
               <table class="table table-bordered table-striped">
                 <thead class="table__head">
@@ -91,7 +99,8 @@ export default {
         keepLength: false,
         showDisabled: false,
         size: 'default',
-        align: 'left'
+        align: 'left',
+        term: '',
       }
   },
   mounted() {
@@ -100,7 +109,7 @@ export default {
   methods: {
     async getBooks(page){
         this.processing = true
-        await axios.get('/api/book-list?page='+page).then(({data})=>{
+        await axios.get(`/api/book-list?page=${page}&term=${this.term}`).then(({data})=>{
             this.books = data.data
         }).catch(({response})=>{
 
@@ -113,6 +122,9 @@ export default {
         page = 1;
       }
       this.getBooks(page)
+    },
+    search(){
+      this.getBooks(1)
     }
   }
 }
@@ -139,6 +151,19 @@ export default {
 @media screen and (max-width: 567px) {
   .winner__table {
     font-size: 12px;
+  }
+}
+
+.form-input-fields {
+ margin-bottom: 0; 
+}
+.input-search {
+  border:1px solid #fff;
+  box-shadow:none;  
+}
+@media (max-width: 767px) {
+  .btn-submit {
+    margin-top:10px;
   }
 }
 </style>

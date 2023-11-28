@@ -14,6 +14,14 @@
             <div class="cta-section">
               <router-link :to='{name:"bookAdd"}' class="btn fs-4 btn-success">Add</router-link>
             </div>
+            <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
+                <div class="input-group">
+                  <input v-model="term" type="search" placeholder="What're you searching for?" aria-describedby="button-addon1" class="form-control border-0 bg-light">
+                  <div class="input-group-append">
+                    <button id="button-addon1" type="btn" class="btn btn-link text-primary" @click="search"><i class="fa fa-search"></i></button>
+                  </div>
+                </div>
+            </div>
             <div class="table-responsive">
               <table class="table table-bordered table-striped">
                 <thead class="table__head">
@@ -110,7 +118,8 @@ export default {
         keepLength: false,
         showDisabled: false,
         size: 'default',
-        align: 'left'
+        align: 'left',
+        term: '',
       }
   },
   mounted() {
@@ -126,7 +135,7 @@ export default {
     async getBooks(page){
         this.processing = true
         await axios.get('/sanctum/csrf-cookie')
-        await axios.get('/api/books/list?page='+page).then(({data})=>{
+        await axios.get(`/api/books/list?page=${page}&term=${this.term}`).then(({data})=>{
             this.books = data.data
         }).catch(({response})=>{
 
@@ -151,6 +160,9 @@ export default {
             this.processing = false
         })
       }
+    },
+    search(){
+      this.getBooks(1)
     }
   }
 }

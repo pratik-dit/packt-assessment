@@ -15,9 +15,19 @@ class BookController extends Controller
 
     }
 
-    public function getBooks()
+    public function getBooks(Request $request)
     {
-      $books = Book::orderBy('created_by', 'desc')->orderBy('id','desc')->paginate(10);
+      if($request->term != null){
+        $term = $request->term;
+        $books = Book::where(function ($query) use($term) {
+                  $query->where('title', 'LIKE', "%$term%")
+                        ->orWhere('author', 'LIKE', "%$term%")
+                        ->orWhere('isbn', 'LIKE', "%$term%")
+                        ->orWhere('genre', 'LIKE', "%$term%");
+                })->orderBy('created_by', 'desc')->orderBy('id','desc')->paginate(10);
+      }else {
+        $books = Book::orderBy('created_by', 'desc')->orderBy('id','desc')->paginate(10);
+      }
       $response = [
           'data' => $books
       ];
