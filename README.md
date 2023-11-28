@@ -15,6 +15,9 @@ Use `MEILISEARCH_HOST` port that generated when you start meilisearch and add in
 # run meilisearch again with master key by using below command
 ./meilisearch --master-key 8Sc7TtGaS7ZtJWu5vh0LD6s3gU2gV0KJJfcY0sNLErY
 
+##### Install redis locally using below command ######
+-sudo apt-get install redis-server
+
 
 ###### Setup Project ######
 
@@ -28,18 +31,28 @@ Use `MEILISEARCH_HOST` port that generated when you start meilisearch and add in
 - `php artisan scout:sync-index-settings`   (update scout config)
 - `npm run dev`
 - `php artisan serve`
+- `php artisan horizon`
 
 -- http://localhost:7700/  (In Meilisearch dashboard, you can see list of books record)
+-- http://localhost:8000/horizon/dashboard  (Laravel Horizon dashboard)
 
 ###### Admin Login Credentials ######
 
 # Email: admin@gmail.com
 # Password: 123123123
 
+######  Note: ########
+- After Login to dashboard, click on `Sync Now` button to get 100 data from faker api. `I used Queue for back processing Syncing`.  (https://prnt.sc/R2L5SAmJmbfu)
+And
+Run below command to import books data into Meilisearch (After Sync Faker API data)
+- `php artisan scout:import "App\Models\Book"`  (import all of our book records into Meilisearch)
+
 
 ###### Meilisearch dashboard screenshot #####
 -- https://prnt.sc/fKD3hq2VwTa2  (List of Books record)
 
+###### Horizon dashboard screenshot #####
+-- https://prnt.sc/4JLAvaF0PF9-  (http://localhost:8000/horizon/dashboard)
 
 ###### Assesment screenshot #####
 - https://prnt.sc/6utwWgXeU9HU    ==>   Home page  (http://localhost:8000/)
@@ -57,8 +70,3 @@ Use `MEILISEARCH_HOST` port that generated when you start meilisearch and add in
 - https://prnt.sc/znLevGk5eQ2S    ==>   Create Book Page    ==> (http://localhost:8000/book/add)
 - https://prnt.sc/icnjzZDwe-V0    ==>   Edit Book Page    ==> (http://localhost:8000/book/630/edit)
 
-
-
-######  Note: ########
-Run below command to import books data into Meilisearch (After Sync Faker API data)
-- `php artisan scout:import "App\Models\Book"`  (import all of our book records into Meilisearch)
