@@ -39,3 +39,26 @@ Use `MEILISEARCH_HOST` port that generated when you start meilisearch and add in
 
 ###### Meilisearch dashboard screenshot #####
 -- https://prnt.sc/fKD3hq2VwTa2  (List of Books record)
+
+
+###### Assesment screenshot #####
+- https://prnt.sc/6utwWgXeU9HU    ==>   Home page  (http://localhost:8000/)
+
+- https://prnt.sc/7q2Iih0xWEYH    ==>   Cutomer Book search page with pagination  ==> (Here i have used Meilisearch)   ==>   (http://localhost:8000/book-store)
+
+- https://prnt.sc/iVYq7pKdB8zU    ==>   Search Book by keyword `Dolore`
+
+- https://prnt.sc/FRWVh6-syI47    ==>   Login Page (Admin can login using abpve credential)   ==>  (http://localhost:8000/login)
+
+- https://prnt.sc/R2L5SAmJmbfu    ==>   Admin Dashboard Page  (You can click `Sync Now` button to get 100 books data into database)   ==>  (http://localhost:8000/dashboard)
+
+- https://prnt.sc/4uMIqeqfq7Hm    ==>   Admin Books List Page  (Admin can Add, Edit, Delete Books data created by admin)   ==>   (http://localhost:8000/book)
+
+- https://prnt.sc/znLevGk5eQ2S    ==>   Create Book Page    ==> (http://localhost:8000/book/add)
+- https://prnt.sc/icnjzZDwe-V0    ==>   Edit Book Page    ==> (http://localhost:8000/book/630/edit)
+
+
+
+######  Note: ########
+Run below command to import books data into Meilisearch (After Sync Faker API data)
+- `php artisan scout:import "App\Models\Book"`  (import all of our book records into Meilisearch)

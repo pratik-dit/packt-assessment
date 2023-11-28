@@ -9,7 +9,7 @@
           <div class="card-body d-grid gap-3">
             <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
                 <div class="input-group">
-                  <input v-model="term" type="search" placeholder="What're you searching for?" aria-describedby="button-addon1" class="form-control border-0 bg-light">
+                  <input v-model="term" type="search" placeholder="Search by: title, author, isbn, genre, publisher" aria-describedby="button-addon1" class="form-control border-0 bg-light">
                   <div class="input-group-append">
                     <button id="button-addon1" type="btn" class="btn btn-link text-primary" @click="search"><i class="fa fa-search"></i></button>
                   </div>

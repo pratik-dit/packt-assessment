@@ -55,12 +55,12 @@
               </button>
             </form>
           </div>
-          <div class="auth-member">
+          <!-- <div class="auth-member">
             <p class="text-center">
               Not a member?
               <router-link :to="{name:'register'}">Register Now!</router-link>
             </p>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
