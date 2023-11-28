@@ -109,7 +109,7 @@ export default {
   methods: {
     async getBooks(page){
         this.processing = true
-        await axios.get(`/api/book-list?page=${page}&term=${this.term}`).then(({data})=>{
+        await axios.get(`/api/search?page=${page}&query=${this.term}`).then(({data})=>{
             this.books = data.data
         }).catch(({response})=>{
 

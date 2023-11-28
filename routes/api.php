@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Customer\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,4 +33,4 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
   });
 });
 
-Route::get('/book-list', 'App\Http\Controllers\Customer\BookController@getBooks');
+Route::get('search', SearchController::class)->name('search');
